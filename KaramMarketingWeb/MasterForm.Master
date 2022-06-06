@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterForm.master.cs" Inherits="KaramMarketingWeb.MasterForm" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>iWMS</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+     <link href="FormDesign/form.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
+      <link rel="stylesheet" type="text/css" href="NewTable/DataTables/datatables.min.css"/>
+    <style>
+        .container1 {
+            max-width: 95%;
+            width: 100%;
+            background-color: #fff;
+            padding: 5px 5px;
+            border-radius: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            max-height: 95%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+         
+            <form id="form1" runat="server">
+       
+                    <asp:ContentPlaceHolder ID="body" runat="server">
+                    </asp:ContentPlaceHolder>
+       
+            </form>
+       
+    </div> 
+    <script type="text/javascript" src="NewTable/DataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#inventory').DataTable({
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                
+                responsive: true,
+                colReorder: true,
+                //"sScrollX": "100%",
+                //"sScrollXInner": "100%"
+            });
+        });
+
+    </script>
+     
+</body>
+</html>
