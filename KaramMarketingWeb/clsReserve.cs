@@ -398,14 +398,15 @@ namespace KaramMarketingWeb
         }
 
 
-        public DataTable GetProdDetails(string ProductionID, string SalesOrder)
+        public DataTable GetProdDetails(string ProductionID, string SalesOrder , string UserName)
         {
             try
             {
                 string strProcedureName = "SP_GetProdDetail_Prod_Web";
                 SqlParameter parUser = CommonDL.CreateParameter("@ProductionID", ProductionID);
                 SqlParameter parSalesOrder = CommonDL.CreateParameter("@SalesOrder", SalesOrder);
-                SqlParameter[] par = { parUser, parSalesOrder };
+                SqlParameter parUserName = CommonDL.CreateParameter("@User", UserName);
+                SqlParameter[] par = { parUser, parSalesOrder , parUserName };
                 return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName, par).Tables[0];
             }
             catch (Exception ex)

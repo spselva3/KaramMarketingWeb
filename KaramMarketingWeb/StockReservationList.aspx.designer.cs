@@ -11,7 +11,7 @@ namespace KaramMarketingWeb
 {
 
 
-    public partial class frmMarketingList
+    public partial class StockReservationList
     {
 
         /// <summary>
@@ -60,15 +60,6 @@ namespace KaramMarketingWeb
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtTo;
 
         /// <summary>
-        /// ddlStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-
-        /// <summary>
         /// ddlRegion control.
         /// </summary>
         /// <remarks>
@@ -76,6 +67,15 @@ namespace KaramMarketingWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
+
+        /// <summary>
+        /// ddlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
         /// btnSearch control.

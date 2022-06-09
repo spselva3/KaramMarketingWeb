@@ -12,6 +12,7 @@ namespace KaramMarketingWeb
 {
     public partial class DashBoardReservation : System.Web.UI.Page
     {
+        clsBusinesslayer objbusinesslayer = new clsBusinesslayer();
         clsReport _Cls = new clsReport();
         string UserName = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace KaramMarketingWeb
                     UserName = Session["UserName"].ToString();
                     if (!IsPostBack)
                     {
+                        BindRegion();
                         GetReserveReport("","","","");
                         DashBoard("", "", "", "");
                     }
@@ -247,12 +249,13 @@ namespace KaramMarketingWeb
                     string[] sp1 = To.Split('-');
                     Todate = sp1[0] + "/" + sp1[1] + "/" + sp1[2];
                 }
+                string Region = ddlRegion.SelectedValue.ToString();
 
-                lblReserved.Text = _Cls.DashBoardCount(User, fromdate, Todate, "").Rows[0]["Count"].ToString();
-                lblProgress.Text = _Cls.DashBoardCount(User, fromdate, Todate, "In-Progress").Rows[0]["Count"].ToString();
-                lblPending.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Pending").Rows[0]["Count"].ToString();
-                lblDispatch.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Done").Rows[0]["Count"].ToString();
-                lblExpired.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Cancelled").Rows[0]["Count"].ToString();
+                lblReserved.Text = _Cls.DashBoardCount(User, fromdate, Todate, "" , Region).Rows[0]["Count"].ToString();
+                lblProgress.Text = _Cls.DashBoardCount(User, fromdate, Todate, "In-Progress" , Region).Rows[0]["Count"].ToString();
+                lblPending.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Pending" , Region).Rows[0]["Count"].ToString();
+                lblDispatch.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Done" , Region).Rows[0]["Count"].ToString();
+                lblExpired.Text = _Cls.DashBoardCount(User, fromdate, Todate, "Cancelled" , Region).Rows[0]["Count"].ToString();
             }
             catch (Exception exe)
             {
@@ -261,7 +264,7 @@ namespace KaramMarketingWeb
             }
         }
 
-        public void GetReserveReport(string User, string FromDate , string ToDate , string Status)
+        public void GetReserveReport(string User, string FromDate , string ToDate , string Status )
         {
             try
             {
@@ -283,15 +286,16 @@ namespace KaramMarketingWeb
                     Todate = sp1[0] + "/" + sp1[1] + "/" + sp1[2];
                 }
 
+                string Region = ddlRegion.SelectedValue.ToString();
+
                 DataTable dtdetails = new DataTable();
-                dtdetails = _Cls.GetReservationDashBoard(User, fromdate, Todate, Status);
+                dtdetails = _Cls.GetReservationDashBoard(User, fromdate, Todate, Status, Region);
                 if (dtdetails != null)
                 {
                     if (dtdetails.Rows.Count > 0)
                     {
                         lvRMGateinDetails.DataSource = dtdetails;
                         lvRMGateinDetails.DataBind();
-
                     }
                     else
                     {
@@ -403,5 +407,37 @@ namespace KaramMarketingWeb
                 lblMessage.Text = exe.Message;
             }
         }
+
+        public void BindRegion()
+        {
+            try
+            {
+                ErrorMsg.Style.Value = "display:none";
+                lblMessage.Text = "";
+
+                if (ddlRegion.Items.Count > 0)
+                {
+                    ddlRegion.Items.Clear();
+                }
+                DataTable dtroles = new DataTable();
+                dtroles = objbusinesslayer.spGetRegionsReservation_Web();
+                if (dtroles != null)
+                {
+                    if (dtroles.Rows.Count > 0)
+                    {
+                        ddlRegion.DataSource = dtroles;
+                        ddlRegion.DataValueField = "Region";
+                        ddlRegion.DataTextField = "Region";
+                        ddlRegion.DataBind();
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+                ErrorMsg.Style.Value = "display:block";
+                lblMessage.Text = exe.Message;
+            }
+        }
+
     }
 }

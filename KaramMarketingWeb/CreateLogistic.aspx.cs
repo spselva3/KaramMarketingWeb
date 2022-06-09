@@ -214,7 +214,7 @@ namespace KaramMarketingWeb
                 string SalesOrder = So.Trim();
 
 
-                string DemandDate = "";
+                string DemandDate = null;
                 if (!string.IsNullOrEmpty(txtDemandDate.Value))
                 {
                     string[] sp1 = txtDemandDate.Value.Split('-');
@@ -368,7 +368,6 @@ namespace KaramMarketingWeb
                 ErrorMsg.Style.Value = "display:none";
                 lblMessage.Text = "";
 
-
                 CheckBox chckheader = (CheckBox)lvMatdetails.FindControl("chkHeader");
                 for (int i = 0; i < lvMatdetails.Items.Count; i++)
                 {
@@ -378,7 +377,6 @@ namespace KaramMarketingWeb
                         chk.Checked = false;
                     }
                 }
-
             }
             catch (Exception exe)
             {
@@ -391,7 +389,6 @@ namespace KaramMarketingWeb
         {
             try
             {
-
                 Response.Redirect("~/frmLogisticList.aspx", false);
             }
             catch (Exception exe)

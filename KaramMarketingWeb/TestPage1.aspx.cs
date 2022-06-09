@@ -22,7 +22,7 @@ namespace KaramMarketingWeb
             try
             {
                 DataTable dtdetails = new DataTable();
-                dtdetails = _Cls.GetReservationDashBoard("", "", "","");
+                dtdetails = _Cls.GetReservationDashBoard("", "", "","" ,"All");
                 if (dtdetails != null)
                 {
                     if (dtdetails.Rows.Count > 0)

@@ -10,7 +10,7 @@ namespace KaramMarketingWeb
 {
     public class clsReport
     {
-        public DataTable GetReservationDashBoard(object Username , string From , string To , string Status)
+        public DataTable GetReservationDashBoard(object Username , string From , string To , string Status , string Region)
         {
             try
             {
@@ -19,7 +19,8 @@ namespace KaramMarketingWeb
                 SqlParameter parUserFrom = CommonDL.CreateParameter("@FromDate", From);
                 SqlParameter parUserTo = CommonDL.CreateParameter("@Todate", To);
                 SqlParameter parStatus = CommonDL.CreateParameter("@Status", Status);
-                SqlParameter[] par = { parUserName , parUserFrom  , parUserTo , parStatus };
+                SqlParameter parRegion = CommonDL.CreateParameter("@Region", Region);
+                SqlParameter[] par = { parUserName , parUserFrom  , parUserTo , parStatus , parRegion };
                 return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName, par).Tables[0];
             }
             catch (Exception ex)
@@ -27,6 +28,27 @@ namespace KaramMarketingWeb
                 throw ex;
             }
         }
+
+
+        public DataTable GetStockReservationReport(object Username, string From, string To, string Status, string Region)
+        {
+            try
+            {
+                string strProcedureName = "SP_GetStockReserveReport_Web";
+                SqlParameter parUserName = CommonDL.CreateParameter("@User", Username);
+                SqlParameter parUserFrom = CommonDL.CreateParameter("@FromDate", From);
+                SqlParameter parUserTo = CommonDL.CreateParameter("@Todate", To);
+                SqlParameter parStatus = CommonDL.CreateParameter("@Status", Status);
+                SqlParameter parRegion = CommonDL.CreateParameter("@Region", Region);
+                SqlParameter[] par = { parUserName, parUserFrom, parUserTo, parStatus, parRegion };
+                return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName, par).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public DataTable GetReserveItems(string ReserveID)
         {
@@ -93,7 +115,7 @@ namespace KaramMarketingWeb
             }
         }
 
-        public DataTable DashBoardCount(object Username, string From, string To, string Status)
+        public DataTable DashBoardCount(object Username, string From, string To, string Status , string Region)
         {
             try
             {
@@ -102,7 +124,8 @@ namespace KaramMarketingWeb
                 SqlParameter parUserFrom = CommonDL.CreateParameter("@FromDate", From);
                 SqlParameter parUserTo = CommonDL.CreateParameter("@Todate", To);
                 SqlParameter parStatus = CommonDL.CreateParameter("@Status", Status);
-                SqlParameter[] par = { parUserName, parUserFrom, parUserTo, parStatus };
+                SqlParameter parRegion = CommonDL.CreateParameter("@Region", Region);
+                SqlParameter[] par = { parUserName, parUserFrom, parUserTo, parStatus , parRegion };
                 return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName, par).Tables[0];
             }
             catch (Exception ex)

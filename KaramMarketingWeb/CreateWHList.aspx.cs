@@ -186,8 +186,7 @@ namespace KaramMarketingWeb
                 ErrorMsg.Style.Value = "display:none";
                 lblMessage.Text = "";
                 string ReserveID = Request.QueryString["Id"];
-
-                string DemandDate = "";
+                string DemandDate = null;
                 if (!string.IsNullOrEmpty(lblDemandDate.Value))
                 {
                     string[] sp1 = lblDemandDate.Value.Split('-');
@@ -196,10 +195,8 @@ namespace KaramMarketingWeb
                 if (pnlRemarks.Visible == true)
                 {
                     _Cls.UpdateWHTDOD(ReserveID.Trim(), DemandDate, txtRemarks.Text, UserName);
-
                     lblMsg.Style.Value = "display:block";
                     lblMessage1.Text = "Revised TDOD and Remarks Updated Successfully";
-
                 }
                 if (lvMatdetails.Items.Count > 0)
                 {
@@ -262,7 +259,6 @@ namespace KaramMarketingWeb
 
                     lblMsg.Style.Value = "display:block";
                     lblMessage1.Text = "ItemCodes Updated Successfully";
-
                     LoadData();
                 }
             }
@@ -283,7 +279,7 @@ namespace KaramMarketingWeb
                 string So = Request.QueryString["So"];
                 string SalesOrder = So.Trim();
                 string ReserveID = Request.QueryString["Id"];
-                string DemandDate = "";
+                string DemandDate = null;
                 if (!string.IsNullOrEmpty(lblDemandDate.Value))
                 {
                     string[] sp1 = lblDemandDate.Value.Split('-');

@@ -163,6 +163,13 @@
                                       <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
 
+                                   <div id ="pnlRegion" runat="server" class="form-group">
+                                      <label for="uname">Region :</label>
+                                        <asp:DropDownList class="form-control" ID="ddlRegion" runat="server"></asp:DropDownList>
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
                                 </div>
                            </div>
                       </div>

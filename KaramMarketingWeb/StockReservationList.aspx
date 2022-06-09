@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="frmMarketingList.aspx.cs" Inherits="KaramMarketingWeb.frmMarketingList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="StockReservationList.aspx.cs" Inherits="KaramMarketingWeb.StockReservationList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet"  href="Login/Style.css"  />
     <style>
@@ -11,9 +11,18 @@
                 text-align: left;
                 cursor: pointer;
                 *cursor: move;
+                text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: auto;
             }
 
-        
+        table.lamp td {
+   
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: auto;
+}
+
     </style>
 
     <%--<script type="text/javascript" src="NewTable/DataTables/datatables.min.js"></script>--%>
@@ -58,7 +67,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h5 class="m-0 text-dark">Reservation List</h5>
+                            <h5 class="m-0 text-dark">Stock Reservation Report</h5>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
@@ -82,6 +91,9 @@
             
                     <input class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" runat="server" id="txtTo" name="To" type="date"  placeholder="To Date" aria-label="username">
             
+                               <asp:DropDownList ID="ddlRegion" class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" Width="100px" runat="server" Height="31px" >
+                            </asp:DropDownList>
+
                           <asp:DropDownList ID="ddlStatus" class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" Width="100px" runat="server" Height="31px" >
                               <asp:ListItem Text="All" Value="All" Selected="True"></asp:ListItem>
                               <asp:ListItem Text="SO Pending" Value="Pending" ></asp:ListItem>
@@ -90,8 +102,7 @@
                                <asp:ListItem Text="Cancelled/Expired" Value="Cancelled"></asp:ListItem>
                             </asp:DropDownList>
 
-                            <asp:DropDownList ID="ddlRegion" class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" Width="100px" runat="server" Height="31px" >
-                            </asp:DropDownList>
+                       
 
                     <asp:Button ID ="btnSearch" runat="server" OnClick="btnSearch_Click"  CausesValidation="false" Text="Search" Width="90px"  class="btn btn-primary" Height="32px" />
                         <%--  <ol style="float:right;">
@@ -124,13 +135,18 @@
                                                 </th>
                                                  <th>Sales Order No
                                                 </th>
+                                                 <th>Item Category
+                                                </th>
+                                                <th>Item Code
+                                                </th>
                                                 <th>Required Qty
                                                 </th>
                                                 <th>Required by Date
                                                 </th>
                                                 <th>Status
                                                 </th>
-                                                <th>Action</th>
+                                             <th>TimeStamp
+                                                </th>
                         
                                         </tr>
                                     </thead>
@@ -148,23 +164,28 @@
                                         </td>
                                         <td>
                                              <asp:Label ID="lblUser" runat="server" Text='<%# Eval("ModifiedBy") %>'></asp:Label>
-                                           <%-- <%# Eval("ModifiedBy")%>--%>
                                         </td>
-                                      
-
-                                         <td><a href="#" id="id123" onclick="ShowReserveItems('<%# Eval("ReservationID")%>'); "/>
+                                         <td>
                                             <%# Eval("ReservationID")%>
                                         </td>
 
                                          <td>
                                             <%# Eval("ModifiedDate")%>
                                         </td>
+
                                         <td>
                                             <%# Eval("CustomerName")%>
                                         </td>
 
                                         <td>
                                             <asp:Label ID="lblSalesOrder" runat="server" Text='<%# Eval("SalesOrder") %>'></asp:Label>
+                                        </td>
+
+                                      <td>
+                                              <%# Eval("Category")%>
+                                        </td>
+                                      <td>
+                                               <%# Eval("ItemCode")%>
                                         </td>
 
                                        <td>
@@ -176,20 +197,20 @@
                                         </td>
 
                                          <td>
-                                             <asp:Label ID="lblReservationStatus" runat="server" Text='<%# Eval("ReservationStatus") %>'></asp:Label>
+                                              <%# Eval("ItemStatus")%>
                                         </td>
 
                                         <td>
-                                            <a href="#" id="id1234" onclick="ShowPackTypes('<%# Eval("ReservationID")%>');">
-                                                <asp:Image ID="imgclose" runat="server" ImageUrl="~/images/editPencil.png" Width="20" Height="20" alt="" />
-                                            </a>
+                                            <%# Eval("ModifiedDate")%>
                                        </td>
                                 </tr>
                             </ItemTemplate>
                             <EmptyDataTemplate>
                                 <table class="lamp" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                                <th>Sr.No
+                                               <th>Sr.No
+                                                </th>
+                                                <th>Region
                                                 </th>
                                                 <th>Requester
                                                 </th>
@@ -201,13 +222,18 @@
                                                 </th>
                                                  <th>Sales Order No
                                                 </th>
+                                                 <th>Item Category
+                                                </th>
+                                                <th>Item Code
+                                                </th>
                                                 <th>Required Qty
                                                 </th>
                                                 <th>Required by Date
                                                 </th>
                                                 <th>Status
                                                 </th>
-                                                <th>Action</th>
+                                             <th>TimeStamp
+                                                </th>
                                     </tr>
                                     <tr>
                                         <td colspan="30">No Records Found.

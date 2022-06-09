@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--  <a href="Pollux/PolluxTable.scss">Pollux/PolluxTable.scss</a>--%>
-    <link href="W3S/w3css.css" rel="stylesheet" />
+    <link href="/W3S/w3css.css" rel="stylesheet" />
     
     <style>
 
@@ -56,6 +56,7 @@
         cursor: pointer;
     }
     </style>
+     <script type="text/javascript" src="/NewTable/DataTables/datatables.min.js"></script>
      <script type="text/javascript">
          //DataTables Initialization for Map Table Example
          $(document).ready(function () {
@@ -234,6 +235,9 @@
             
                                 <input class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" runat="server" id="txtTo" name="To" type="date"  placeholder="To Date" aria-label="username">
             
+                             <asp:DropDownList ID="ddlRegion" class="w-1\/4  py-1 text-gray-1000 bg-blue-200 rounded" Width="100px" runat="server" Height="31px" >
+                            </asp:DropDownList>
+
                                 <asp:Button ID ="btnSearch" runat="server" OnClick="btnSearch_Click"  CausesValidation="false" Text="Apply"   class="btn btn-primary SearchButton"  />
                           
                                   </div>
@@ -358,6 +362,8 @@
                                         <tr>
                                                 <th>Sr.No
                                                 </th>
+                                                <th>Region
+                                                </th>
                                                 <th>Reservation ID
                                                 </th>
                                                 <th>Creation Date   
@@ -387,38 +393,46 @@
                                    <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <%# Container.DataItemIndex + 1%>
                                         </td>
+                                     <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
+                                            <%# Eval("Region")%>
+                                        </td>
 
                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %> MouseHoverView " >
                                          <a   id="id123" onclick="ShowReserveItems('<%# Eval("ReservationID")%>'); "/>
                                             <%# Eval("ReservationID")%>
-                     
-                                        </td>
+                                      </td>
+
                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <%# Eval("ModifiedDate")%>
-                                        </td>
+                                     </td>
 
-                                        <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
+                                     <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <%# Eval("CustomerName")%>
-                                        </td>
+                                     </td>
+
                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <%# Eval("Qty")%>
-                                        </td>
+                                     </td>
                                         
-                                        <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
+                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <%# Eval("DemandDate")%>
-                                        </td>
-                                     <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>"> 
+                                      </td>
+
+                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>"> 
                                             <%--<%# Eval("SalesOrder")%>--%>
                                           <asp:Label ID="lblSalesOrder" runat="server" Text='<%# Eval("SalesOrder") %>'></asp:Label>
-                                        </td>
-                                         <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
+                                      </td>
+
+                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                              <asp:Label ID="lblReservationStatus" runat="server" Text='<%# Eval("ReservationStatus") %>'></asp:Label>
                                            <%-- <%# Eval("ReservationStatus")%>--%>
-                                        </td>
-                                     <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
+                                      </td>
+
+                                      <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                              <asp:Label ID="lblUser" runat="server" Text='<%# Eval("ModifiedBy") %>'></asp:Label>
                                            <%-- <%# Eval("ReservationStatus")%>--%>
                                         </td>
+
                                       <td class="<%# GetClassName(Convert.ToString( Eval("ReservationStatus"))) %>">
                                             <a href="#" id="id1234" onclick="ShowPackTypes('<%# Eval("ReservationID")%>');">
                                                 <asp:Image ID="imgclose" runat="server" ImageUrl="~/images/editPencil.png" Width="20" Height="20" alt="" />

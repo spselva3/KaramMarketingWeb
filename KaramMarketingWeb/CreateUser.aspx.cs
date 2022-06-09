@@ -23,8 +23,11 @@ namespace KaramMarketingWeb
                 {
                     Bindroles();
                     BindFloors();
+                    BindRegion();
                     pnlFloor.Visible = false;
-                        
+
+                    pnlRegion.Visible = false;
+
                     if (Request.QueryString.AllKeys.Contains("UID"))
                     {
                         hdnUSERID.Value = Request.QueryString["UID"].ToString();
@@ -37,7 +40,6 @@ namespace KaramMarketingWeb
                     if (hdnUSERID.Value != "0")
                     {
                         spGetUserdetailbyUID(hdnUSERID.Value);
-                        
                         lblHeading.Text = "Update User";
                     }
                 }
@@ -157,6 +159,39 @@ namespace KaramMarketingWeb
             }
         }
 
+
+        public void BindRegion()
+        {
+            try
+            {
+                ErrorMsg.Style.Value = "display:none";
+                lblMessage.Text = "";
+
+                if (ddlRegion.Items.Count > 0)
+                {
+                    ddlRegion.Items.Clear();
+                }
+                DataTable dtroles = new DataTable();
+                dtroles = objbusinesslayer.spGetRegions_Web();
+                if (dtroles != null)
+                {
+                    if (dtroles.Rows.Count > 0)
+                    {
+                        ddlRegion.DataSource = dtroles;
+                        ddlRegion.DataValueField = "Region";
+                        ddlRegion.DataTextField = "Region";
+                        ddlRegion.DataBind();
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+                ErrorMsg.Style.Value = "display:block";
+                lblMessage.Text = exe.Message;
+            }
+        }
+
+
         public void clearAll()
         {
             try
@@ -208,19 +243,37 @@ namespace KaramMarketingWeb
                     lblMessage.Text = "Please Select the Status";
                     return;
                 }
-                if (ddlStatus.SelectedIndex < 0)
+                if (ddlRole.SelectedIndex < 0)
                 {
                     ErrorMsg.Style.Value = "display:block";
                     lblMessage.Text = "Please Select the Role";
                     return;
                 }
+                //if (ddlRegion.SelectedIndex < 0)
+                //{
+                //    ErrorMsg.Style.Value = "display:block";
+                //    lblMessage.Text = "Please Select the Region";
+                //    return;
+                //}
+
                 ErrorMsg.Style.Value = "display:none";
                 lblMessage.Text = "";
-                string Floor = ddlFloor.SelectedValue.ToString();
+                string Region = "";
+                string Floor = "";
 
+                if (pnlFloor.Visible == true)
+                {
+                    Floor = ddlFloor.SelectedValue.ToString();
+                }
+                if (pnlRegion.Visible == true)
+                {
+                     Region = ddlRegion.SelectedValue.ToString();
+                }
 
                 objbusinesslayer.InsertUser_RM(txtFName.Value.ToString(), txtMName.Value.ToString(), txtUname.Value.ToString(), txtPswd.Value.ToString(), txtEmail.Value.ToString(),
-                    txtMobile.Value.ToString(), ddlStatus.SelectedValue, ddlRole.SelectedItem.Value, ddlRole.SelectedItem.Text.ToString(), hdnUSERID.Value, Session["UserName"].ToString() , Floor);
+                    txtMobile.Value.ToString(), ddlStatus.SelectedValue, ddlRole.SelectedItem.Value, ddlRole.SelectedItem.Text.ToString(), 
+                    hdnUSERID.Value, Session["UserName"].ToString() , Floor , Region);
+                
                 clearAll();
 
                 if (hdnUSERID.Value != "0")
@@ -279,9 +332,16 @@ namespace KaramMarketingWeb
                 if(Role.ToUpper() == "PRODUCTION")
                 {
                     pnlFloor.Visible = true;
+                    pnlRegion.Visible = false;
+                }
+                else if(Role.ToUpper() == "MARKETING")
+                {
+                    pnlRegion.Visible = true;
+                    pnlFloor.Visible = false;
                 }
                 else
                 {
+                    pnlRegion.Visible = false;
                     pnlFloor.Visible = false;
                 }
             }

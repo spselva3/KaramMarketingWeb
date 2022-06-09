@@ -110,9 +110,13 @@
                                             </th>
                                             <th>SO Date
                                             </th>
-                                            <th>MTDOD
+                                            <th>WH-TDOD
                                             </th>
-                                            <th>RMTDOD
+                                            <th>WH-TDOD-R
+                                            </th>
+                                             <th>Prod-TDOD
+                                            </th>
+                                            <th>Prod-TDOD-R
                                             </th>
                                             <th>Status
                                             </th>
@@ -151,11 +155,17 @@
                                  <td>
                                     <%# Eval("SalesOrderDate")%>
                                 </td>
-                             <td>
-                                    <%# Eval("MTDOD")%>
+                                <td>
+                                    <%# Eval("WHTDOD")%>
                                 </td>
                                 <td>
-                                    <%# Eval("RMTDOD")%>
+                                    <%# Eval("WHETDOD")%>
+                                </td>
+                                <td>
+                                    <%# Eval("ProductionTDOD")%>
+                                </td>
+                                <td>
+                                    <%# Eval("ProductionRTDOD")%>
                                 </td>
                                  <td>
                                     <%# Eval("WHReferenceStatus")%>
@@ -183,9 +193,13 @@
                                             </th>
                                             <th>SO Date
                                             </th>
-                                            <th>MTDOD
+                                            <th>WH-TDOD
                                             </th>
-                                            <th>RMTDOD
+                                            <th>WH-TDOD-R
+                                            </th>
+                                             <th>Prod-TDOD
+                                            </th>
+                                            <th>Prod-TDOD-R
                                             </th>
                                             <th>Status
                                             </th>

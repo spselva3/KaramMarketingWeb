@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace KaramMarketingWeb
 {
-    public partial class frmMarketingList : System.Web.UI.Page
+    public partial class StockReservationList : System.Web.UI.Page
     {
         clsReport _Cls = new clsReport();
         clsBusinesslayer objbusinesslayer = new clsBusinesslayer();
@@ -26,7 +26,7 @@ namespace KaramMarketingWeb
                     if (!IsPostBack)
                     {
                         BindRegion();
-                        GetReserveReport();
+                        GetStockReserveReport();
                     }
                 }
                 else
@@ -40,7 +40,7 @@ namespace KaramMarketingWeb
                 lblMessage.Text = exe.Message;
             }
         }
-        public void GetReserveReport()
+        public void GetStockReserveReport()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace KaramMarketingWeb
                 lblMessage.Text = "";
 
                 DataTable dtdetails = new DataTable();
-                dtdetails = _Cls.GetReservationDashBoard("", "", "", "All" ,"All");
+                dtdetails = _Cls.GetStockReservationReport("", "", "", "All", "All");
                 if (dtdetails != null)
                 {
                     if (dtdetails.Rows.Count > 0)
@@ -96,7 +96,7 @@ namespace KaramMarketingWeb
                 string Region = ddlRegion.SelectedValue.ToString();
 
                 DataTable dtdetails = new DataTable();
-                dtdetails = _Cls.GetReservationDashBoard(UserName, fromdate, Todate, Status , Region);
+                dtdetails = _Cls.GetStockReservationReport(UserName, fromdate, Todate, Status, Region);
                 if (dtdetails != null)
                 {
                     if (dtdetails.Rows.Count > 0)
@@ -123,44 +123,7 @@ namespace KaramMarketingWeb
         {
             try
             {
-                ErrorMsg.Style.Value = "display:none";
-                lblMessage.Text = "";
-                UserName = Session["UserName"].ToString();
-
-                if (e.Item.ItemType == ListViewItemType.DataItem)
-                {
-                    Label lblReservationStatus = (Label)e.Item.FindControl("lblReservationStatus");
-                    Image imgclose = (Image)e.Item.FindControl("imgclose");
-                    Label lblSalesOrder = (Label)e.Item.FindControl("lblSalesOrder");
-                    Label lblUser = (Label)e.Item.FindControl("lblUser");
-                    
-                    string _Status = lblReservationStatus.Text.Trim();
-                    string _SO = lblSalesOrder.Text.Trim();
-                    string _User = lblUser.Text.Trim();
-
-                    if (_Status.ToUpper() == "PENDING")
-                    {
-                        if (string.IsNullOrEmpty(_SO))
-                        {
-                            if(UserName.ToUpper() == _User.ToUpper())
-                            {
-                               imgclose.Visible = true;
-                            }
-                            else
-                            {
-                                imgclose.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            imgclose.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        imgclose.Visible = false;
-                    }
-                }
+               
             }
             catch (Exception exe)
             {
@@ -168,7 +131,6 @@ namespace KaramMarketingWeb
                 lblMessage.Text = exe.Message;
             }
         }
-
 
         public void BindRegion()
         {
@@ -200,6 +162,5 @@ namespace KaramMarketingWeb
                 lblMessage.Text = exe.Message;
             }
         }
-
     }
 }

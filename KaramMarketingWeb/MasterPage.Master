@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="KaramMarketingWeb.MasterPage" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <meta charset="utf-8">
@@ -11,35 +10,37 @@
     <title>Integrated WareHouse Management System</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-
+  
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/Theme/plugins/fontawesome-free/css/all.min.css" >
     <!-- IonIcons -->
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link href="Theme/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="/Theme/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
     <%--<link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">--%>
     <%--<link href="Theme/dist/css/adminlte.css" rel="stylesheet" />--%>
-    <link href="Theme/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link href="/Theme/dist/css/adminlte.min.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <%--<link rel="stylesheet" type="text/css" href="Tables/DataTables/datatables.min.css"/>--%>
 
-    <link rel="stylesheet" type="text/css" href="NewTable/DataTables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/NewTable/DataTables/datatables.min.css"/>
      <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src="Theme/plugins/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/Theme/plugins/jquery/jquery.min.js" type="text/javascript"></script>
     <!-- Bootstrap -->
-    <script src="Theme/plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/Theme/plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <!-- AdminLTE -->
-    <script src="Theme/dist/js/adminlte.js" type="text/javascript"></script>
+    <script src="/Theme/dist/js/adminlte.js" type="text/javascript"></script>
     <!-- OPTIONAL SCRIPTS -->
-    <script src="Theme/plugins/chart.js/Chart.min.js" type="text/javascript"></script>
-    <script src="Theme/dist/js/demo.js" type="text/javascript"></script>
-    <script src="Theme/dist/js/pages/dashboard3.js" type="text/javascript"></script>
+    <script src="/Theme/plugins/chart.js/Chart.min.js" type="text/javascript"></script>
+    <script src="/Theme/dist/js/demo.js" type="text/javascript"></script>
+    <script src="/Theme/dist/js/pages/dashboard3.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="NewTable/DataTables/datatables.min.js"></script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="/NewTable/DataTables/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#inventory').DataTable({
@@ -56,7 +57,17 @@
         });
 
     </script>
-    
+    <%-- <script type="text/javascript">
+         const hasTree = $('.has-treeview');
+
+         $.each(hasTree, function () {
+             $(this).click(function () {
+                 $(this).children('.nav-treeview').slideToggle();
+             });
+         });
+
+     </script>
+    --%>
 </head>
 <body class="sidebar-mini accent-primary text-sm">
     <div class="wrapper">
@@ -85,12 +96,13 @@
                 
                  <li class="nav-item">
                     <a class="nav-link"  href="javascript:window.location.reload(true)">
-                        <i class="fas fa-sync-alt"></i></a>
+                        <i class="fa fa-refresh" aria-hidden="true"></i></a>
                 </li>
 
                  <li class="nav-item" >
                             <a class="nav-link" href="Login.aspx">
-                                <i class="fas fa-user"></i>&nbsp;<i class="fas fa-power-off"></i>
+                                <i class="fa fa-user"></i>&nbsp;
+                                <i class="fa fa-power-off"></i>
                             </a>
                         </li> 
                 <!-- Messages Dropdown Menu -->
@@ -190,7 +202,7 @@
         <aside class="main-sidebar sidebar-dark-primary">
             <!-- Brand Logo -->
             <a  class="brand-link">
-                  <img src="Images/signodelogo1.png" alt="Logo" class="brand-image img-circle elevation-3"
+                  <img src="/Images/signodelogo1.png" alt="Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-bold" style="color:white;">iWMS Web Portal</span>
             </a>
@@ -202,7 +214,7 @@
                     <div class="image">
                         <%--<img src="Images/karamlogo.jpg" />--%>
                          <%--<img src="Images/KaramHDTransparent.png" height="20" />--%>
-                        <img src="Images/KaramHDWhite.png" class="img-circle" alt="User Image" />
+                        <img src="/Images/KaramHDWhite.png" class="img-circle" alt="User Image" />
                         <%--<img src="Images/DeleteIcon.png" class="img-circle" alt="User Image" />--%>
                      <%--   <img src="/theme/dist/img/avatar.png" >--%>
                         <%--<img src="Images/karamlogo.jpg" class="img-circle" alt="User Image">--%>
@@ -216,7 +228,7 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                        
                        <%-- <li class="nav-item">
                             <a href="DashBoardReservation.aspx" class="nav-link">
@@ -229,10 +241,10 @@
                         </li>--%>
                         <li id="pnlCategories" runat="server" class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-sitemap"></i> &nbsp;
+                                <i class="fa fa-sitemap"></i> &nbsp;
                                 <p>
                                     Categories
-                                    <i class="right fas fa-angle-left"></i>
+                                    <i class="right fa fa-angle-left"></i>
                                      
                                 </p>
                             </a>
@@ -285,6 +297,13 @@
                                             <a href="frmMarketingList.aspx" class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                <i class="fas fa-clipboard-list"></i>&nbsp;
                                                 <p>Reservation List</p>
+                                            </a>
+                                        </li>
+
+                                           <li class="nav-item">
+                                            <a href="StockReservationList.aspx" class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                               <i class="fas fa-clipboard-list"></i>&nbsp;
+                                                <p>Stock Reservation</p>
                                             </a>
                                         </li>
                                     </ul>

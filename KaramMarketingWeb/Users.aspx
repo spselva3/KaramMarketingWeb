@@ -21,7 +21,7 @@
           
     </style>
 
-    <script type="text/javascript" src="NewTable/DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="/NewTable/DataTables/datatables.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -41,6 +41,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body"  runat="server">
+    &nbsp;&nbsp;&nbsp;
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     
       <div id="ErrorMsg" class="alert alert-danger alert-dismissable" style="display: none" runat="server">
@@ -105,6 +106,8 @@
                                                 </th>
                                                  <th>Location
                                                 </th>
+                                            <th>Region
+                                                </th>
                                                 <th>Status
                                                 </th>
                                                  <th>User   
@@ -144,6 +147,9 @@
                                     </td>
                                     <td>
                                         <%# Eval("UM_PlantName") %>
+                                    </td>
+                                     <td>
+                                        <%# Eval("Region") %>
                                     </td>
                                     <td>
                                         <%# Eval("Status1") %>

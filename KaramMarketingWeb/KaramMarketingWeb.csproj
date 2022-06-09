@@ -156,6 +156,8 @@
     <Content Include="BootStrapDesign\Javascript\typeahead.min.js" />
     <Content Include="BootStrapDesign\Javascript\validation-demo.js" />
     <Content Include="ConsolidatedReport.aspx" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="CreateEmail.aspx" />
     <Content Include="CreateEmailID.aspx" />
     <Content Include="CreateLogistic.aspx" />
@@ -174,6 +176,7 @@
     <Content Include="DeliveryPlanReport.aspx" />
     <Content Include="EditReservation.aspx" />
     <Content Include="EditSO.aspx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="FormDesign\form.css" />
     <Content Include="frmEmail.aspx" />
     <Content Include="frmLogisticList.aspx" />
@@ -401,6 +404,7 @@
     <Content Include="ReservationCreate.aspx" />
     <Content Include="ReservedItems.aspx" />
     <Content Include="Roles.aspx" />
+    <Content Include="StockReservationList.aspx" />
     <Content Include="Tables\DataTables\Buttons-2.2.2\css\buttons.bootstrap.css" />
     <Content Include="Tables\DataTables\Buttons-2.2.2\css\buttons.bootstrap.min.css" />
     <Content Include="Tables\DataTables\Buttons-2.2.2\css\buttons.bootstrap4.css" />
@@ -2373,6 +2377,13 @@
     <Compile Include="Roles.aspx.designer.cs">
       <DependentUpon>Roles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StockReservationList.aspx.cs">
+      <DependentUpon>StockReservationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockReservationList.aspx.designer.cs">
+      <DependentUpon>StockReservationList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestFom.aspx.cs">
       <DependentUpon>TestFom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2408,6 +2419,11 @@
     <Content Include="Home\assets\web\assets\mobirise-icons2\mobirise2.eot" />
     <Content Include="Home\assets\web\assets\mobirise-icons2\mobirise2.ttf" />
     <Content Include="Home\assets\web\assets\mobirise-icons2\mobirise2.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="packages.config" />
     <Content Include="Theme\dist\css\adminlte.css.map" />
     <Content Include="Theme\dist\css\adminlte.min.css.map" />

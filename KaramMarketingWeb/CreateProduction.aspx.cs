@@ -56,7 +56,7 @@ namespace KaramMarketingWeb
                 lblSalesOrder.Value = SalesOrder;
 
                 DataTable dtdetails = new DataTable();
-                dtdetails = _Cls.GetProdDetails(ProductionID, SalesOrder);
+                dtdetails = _Cls.GetProdDetails(ProductionID, SalesOrder, Session["UserName"].ToString());
 
                 if (dtdetails != null)
                 {
@@ -243,7 +243,7 @@ namespace KaramMarketingWeb
                 string So = Request.QueryString["So"];
                 string SalesOrder = So.Trim();
 
-                string DemandDate = "";
+                string DemandDate = null;
                 if (!string.IsNullOrEmpty(lblProdDate.Value))
                 {
                     string[] sp1 = lblProdDate.Value.Split('-');

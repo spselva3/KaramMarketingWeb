@@ -198,6 +198,7 @@
                                                     <th>Production Status</th>
                                                      <th>WHTDOD</th>
                                                      <th>WH Status</th>
+                                                     <th>Prod-TDOD</th>
                                                 </tr>
                                                 <tr id="ItemPlaceholder" runat="server">
                                                 </tr>
@@ -252,18 +253,30 @@
                                                 <td>
                                                     <asp:Label ID="lblWhStatus" runat="server" Text='<%# Eval("WHItemStatus") %>'></asp:Label>
                                                 </td>
+                                                  <td>
+                                                    <asp:Label ID="lblProdTDOD" runat="server" Text='<%# Eval("ProdTDOD") %>'></asp:Label>
+                                                </td>
                                             </tr>
                                         </ItemTemplate>
                                         <EmptyDataTemplate>
                                             <table class="lamp" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <th style="width: 10px;">S.No.</th>
+                                                    <th style="width: 10px;">S.No</th>
                                                     <th>Item Code</th>
+                                                    <th style="display: none;">Item Desc</th>
                                                     <th>Item Desc</th>
                                                     <th>Category</th>
                                                     <th>UOM</th>
                                                     <th>Available Qty</th>
+                                                    <th>Pack Style</th>
+                                                    <th>Pack Req</th>
                                                     <th>Demand Qty</th>
+                                                     <th>Production Floor</th>
+                                                    <th>Production Status</th>
+                                                     <th>WHTDOD</th>
+                                                     <th>WH Status</th>
+                                                     <th>Prod-TDOD</th>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="20">No Records Found.

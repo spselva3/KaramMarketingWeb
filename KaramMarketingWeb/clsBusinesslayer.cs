@@ -96,8 +96,37 @@ namespace KaramMarketingWeb
         }
 
 
-        public void InsertUser_RM(object Firstname, object Lastname, object Username, object Password, object Email, object Phone,
-          object Status, object RoleID, object Rolename, object USERID, object CRBY , string Floor)
+        public DataTable spGetRegions_Web()
+        {
+            try
+            {
+                string strProcedureName = "SP_GetRegion_Web";
+                return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable spGetRegionsReservation_Web()
+        {
+            try
+            {
+                string strProcedureName = "SP_GetRegionReservation_Web";
+                return SqlHelper.ExecuteDataset(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public void InsertUser_RM(object Firstname, object Lastname, object Username, 
+            object Password, object Email, object Phone,
+          object Status, object RoleID, object Rolename, object USERID, 
+          object CRBY , string Floor , string Region)
         {
             try
             {
@@ -115,9 +144,10 @@ namespace KaramMarketingWeb
                 SqlParameter paruserid = CommonDL.CreateParameter("@USERID", USERID);
                 SqlParameter parcrby = CommonDL.CreateParameter("@CRBY", CRBY);
                 SqlParameter parFloor = CommonDL.CreateParameter("@Floor", Floor);
+                SqlParameter parRegion = CommonDL.CreateParameter("@Region", Region);
 
                 SqlParameter[] par = { parFirstname, parLastname, parUsername,parPassword,parEmail,parPhone,parStatus,
-                parRoleID,parRolename,paruserid,parcrby , parFloor};
+                parRoleID,parRolename,paruserid,parcrby , parFloor , parRegion};
                 SqlHelper.ExecuteNonQuery(CommonDL.ConnectionString, CommandType.StoredProcedure, strProcedureName, par);
             }
             catch (Exception ex)
