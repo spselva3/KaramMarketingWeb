@@ -25,7 +25,6 @@ namespace KaramMarketingWeb
                     if (!IsPostBack)
                     {
                         string DateValue = DateTime.Now.ToString("dd/MM/yyyy");
-
                         try
                         {
                            
@@ -122,11 +121,7 @@ namespace KaramMarketingWeb
                     lblMessage.Text = "Please Generate a Reservation ID";
                     return;
                 }
-               // _Cls.AddSalesOrderWithReservation(txtReservationID.Text, txtSalesOrder.Text.Trim(), UserName);
-
-                lblMsg.Style.Value = "display:block";
-                lblMessage1.Text = "Reservation ID Generated : " + txtReservationID.Text;
-
+              
             }
             catch (Exception exe)
             {
